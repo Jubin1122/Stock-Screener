@@ -1,1 +1,2 @@
-keys
+# ignore a file type
+*.cfg
