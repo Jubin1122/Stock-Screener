@@ -21,7 +21,7 @@ df = pd.read_csv('nasdaq.csv')
 symbols = df['Symbol'].values.tolist()
 #print(symbols)
 
-#print(f'The url:{url}\n')
+print(f'The url:{url}\n')
 
 start = 0
 end = 500

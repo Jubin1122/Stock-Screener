@@ -18,7 +18,7 @@ df = pd.read_csv('nasdaq.csv')
 symbols = df['Symbol'].values.tolist()
 _symbols = ['A', 'AA', 'AACG', 'AACQ', 'AACQU', 'AACQW', 'AAIC',
  'AAL', 'AAMC', 'AAME', 'AAN', 'AAOI', 'AAON', 'AAP', 'AAPL', 'AAT', 
- 'AAU', 'AAWW', 'AB', 'ABB', 'ABBV', 'ABC', 'ABCB', 'ABCL', 'ABCM', 
+ 'AAU', 'AAWW', 'AB', 'ABB', 'ABBV', 'ABC', 'ABCB', 'ABCL',
  'ABEO', 'ABEV', 'ABG', 'ABIO', 'ABM', 
 'ABMD', 'ABNB', 'ABR', 'ABST', 'ABT']
 
