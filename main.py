@@ -16,27 +16,36 @@ print(f'The url:{url}\n')
 
 df = pd.read_csv('nasdaq.csv')
 symbols = df['Symbol'].values.tolist()
-_symbols = ['A', 'AA', 'AACG', 'AACQ', 'AACQU', 'AACQW', 'AAIC',
- 'AAL', 'AAMC', 'AAME', 'AAN', 'AAOI', 'AAON', 'AAP', 'AAPL', 'AAT', 
- 'AAU', 'AAWW', 'AB', 'ABB', 'ABBV', 'ABC', 'ABCB', 'ABCL',
- 'ABEO', 'ABEV', 'ABG', 'ABIO', 'ABM', 
-'ABMD', 'ABNB', 'ABR', 'ABST', 'ABT']
 
-len(_symbols)
-
+regex = re.compile('[@_!#$%^&*()<>?/\|}{~:]')
+symbols = [item for item in symbols if regex.search(item) == None]
 #print(symbols)
 
+
+
 start = 0
-end = 10
-#while start < len(_symbols):
-tkr = _symbols[start:end]
-print(tkr)
-payload = {
+end = 500
+files = []
+while start < len(symbols):
+    tkr = symbols[start:end]
+    payload = {
             'apikey': key,
-            'symbol': tkr ,
+            'symbol': tkr,
             'projection': 'fundamental'
         }
 
-results = requests.get(url, params=payload)
+    results = requests.get(url, params=payload)
+    data = results.json()
+    f_name = time.asctime() +'.pkl'
+    f_name = re.sub('[ :]', '_', f_name)
+    files.append(f_name)
+    with open(f_name, 'wb') as file:
+        pkl.dump(data,file)
+    start = end
+    end += 500
+    time.sleep(1)
 
-print(results.json())
+print(f'{len(data)}\n')
+print(f'{data.keys()}\n')
+
+
